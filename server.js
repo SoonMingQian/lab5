@@ -6,15 +6,18 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//Root route
 app.get('/', (req, res) => {
     res.send('Welcome to Data Representation & Querying')
 })
 
+//Route with a dunamic parameter
 app.get("/hello/:name", (req, res) => {
     console.log(req.params.name);
     res.send("Hello "+ req.params.name);
 })
 
+//Route for fetching a list of books
 app.get('/api/books', (req, res) => {
     const data = [
         {
@@ -57,14 +60,17 @@ app.get('/api/books', (req, res) => {
     })
 })
 
+//Route for serving an HTML file
 app.get('/test', (req, res) =>{
     res.sendFile(__dirname+ '/index.html')
 })
 
+//Route to handle GET requests for name
 app.get('/name', (req, res) => {
     res.send("Hello "+ req.query.fname+ ' ' + req.query.lname)
 })
 
+//Route to handle POST requests for name
 app.post('/name', (req, res) => {
     res.send("Hello "+req.body.fname + " "+req.body.lname);
 })
